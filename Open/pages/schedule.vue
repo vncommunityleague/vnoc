@@ -12,19 +12,19 @@
                             >
                                 {{ $t("open.schedule.all") }}
                             </div>
-                            <div 
+                            <div
                                 :class="{ 'open_filter__selected': view === 'UPCOMING' }"
                                 @click="view = 'UPCOMING'"
                             >
                                 {{ $t("open.schedule.upcoming") }}
                             </div>
-                            <div 
+                            <div
                                 :class="{ 'open_filter__selected': view === 'ONGOING' }"
                                 @click="view = 'ONGOING'"
                             >
                                 {{ $t("open.schedule.ongoing") }}
                             </div>
-                            <div 
+                            <div
                                 :class="{ 'open_filter__selected': view === 'PAST' }"
                                 @click="view = 'PAST'"
                             >
@@ -75,7 +75,7 @@
                                 {{ $t(`open.components.filter.sorts.${sort}`) }}
                             </div>
                             <div class="open_filter__separator" />
-                            <div 
+                            <div
                                 class="schedule__matchID_filter"
                                 style="cursor: default;"
                             >
@@ -103,7 +103,7 @@
                             </div>
                         </template>
                     </OpenFilter>
-                    <OpenFilter v-else-if="page === 'brackets' && selectedStage?.stageType === 3">
+                    <OpenFilter v-else-if="page === 'brackets' && isRoundRobinStage">
                         <template #view>
                             <div style="cursor: default;">
                                 {{ $t("open.schedule.group") }}
@@ -125,8 +125,8 @@
                         </template>
                     </OpenFilter>
                     <StageSelector
-                        :not-beginning="selectedStage?.ID !== stageList[0]?.ID"
-                        :not-end="selectedStage?.ID !== stageList[stageList.length - 1]?.ID"
+                        :not-beginning="selectedStage !== stageList[0]"
+                        :not-end="selectedStage !== stageList[stageList.length - 1]"
                         @prev="index--"
                         @next="index++"
                     >
@@ -188,7 +188,7 @@
                     />
                 </div>
                 <RoundRobinView
-                    v-if="selectedStage?.stageType === 3"
+                    v-if="isRoundRobinStage"
                     :matchups="matchupList"
                     :current="currGroup"
                     @change="currGroup = $event"
@@ -213,6 +213,7 @@ import RoundRobinView from "../../Assets/components/open/RoundRobinView.vue";
 
 import { Tournament } from "../../Interfaces/tournament";
 import { Stage, StageType } from "../../Interfaces/stage";
+import { Round } from "../../Interfaces/round";
 import { MatchupList, matchIDAlphanumericSort } from "../../Interfaces/matchup";
 import { UserInfo } from "../../Interfaces/user";
 
@@ -237,10 +238,10 @@ const openModule = namespace("open");
 
                 {hid: "og:site_name", property: "og:site_name", content: this.$store.state.open.title},
                 {hid: "og:title", property: "og:title", content: this.$store.state.open.title},
-                {hid: "og:url", property: "og:url", content: `https://vnoc.hoaq.works${this.$route.path}`}, 
+                {hid: "og:url", property: "og:url", content: `https://vnoc.hoaq.works${this.$route.path}`},
                 {hid: "og:description", property: "og:description", content: this.$store.state.open.tournament?.description || ""},
                 {hid: "og:image",property: "og:image", content: require("../../Assets/img/site/open/banner.png")},
-                
+
                 {name: "twitter:title", content: this.$store.state.open.title},
                 {name: "twitter:description", content: this.$store.state.open.tournament?.description || ""},
                 {name: "twitter:image", content: require("../../Assets/img/site/open/banner.png")},
@@ -251,14 +252,14 @@ const openModule = namespace("open");
     },
 })
 export default class Schedule extends Vue {
-    
+
     @State loggedInUser!: UserInfo | null;
     @openModule.State tournament!: Tournament | null;
     @openModule.State matchupList!: MatchupList[] | null;
 
     loading = false;
-    stageList: Stage[] = [];
-    index = 0;
+    stageList: (Stage | Round)[] = [];
+    index = -1;
     searchValue = "";
     page: "schedule" | "brackets" = "schedule";
     view: "ALL" | "UPCOMING" | "ONGOING" | "PAST" = "ALL";
@@ -276,9 +277,13 @@ export default class Schedule extends Vue {
         "BWS DIFF": (a, b) => !a.teams || !b.teams ? 0 : (Math.max(...a.teams.map(team => team.BWS)) - Math.min(...a.teams.map(team => team.BWS)) - (Math.max(...b.teams.map(team => team.BWS)) - Math.min(...b.teams.map(team => team.BWS)))),
     };
     currentSort: typeof this.sorts[number] = "DATETIME";
-    
-    get selectedStage (): Stage | null {
+
+    get selectedStage (): Stage | Round | null {
         return this.stageList[this.index] || null;
+    }
+
+    get isRoundRobinStage (): boolean {
+        return !!(this.selectedStage && "stageType" in this.selectedStage && this.selectedStage.stageType === StageType.Roundrobin);
     }
 
     get filteredMatchups () {
@@ -289,7 +294,7 @@ export default class Schedule extends Vue {
             if (this.myStaff && (matchup.referee?.ID !== this.loggedInUser?.ID && matchup.streamer?.ID !== this.loggedInUser?.ID && !matchup.commentators?.some(comm => comm.ID === this.loggedInUser?.ID))) return false;
             if (this.hidePotentials && matchup.potentialFor) return false;
             if (this.searchValue && !(
-                matchup.matchID.toLowerCase().includes(this.searchValue.toLowerCase()) || 
+                matchup.matchID.toLowerCase().includes(this.searchValue.toLowerCase()) ||
                 matchup.ID.toString().includes(this.searchValue) ||
                 matchup.teams?.some(team => team.ID.toString().includes(this.searchValue)) ||
                 matchup.teams?.some(team => team.name.toLowerCase().includes(this.searchValue.toLowerCase())) ||
@@ -315,11 +320,11 @@ export default class Schedule extends Vue {
             this.$store.commit("open/setMatchups", []);
             return;
         }
-        
+
         this.loading = true;
         this.$store.commit("open/setMatchups", []);
 
-        await this.$store.dispatch("open/setMatchups", this.selectedStage?.ID);
+        await this.$store.dispatch("open/setMatchups", this.selectedStage);
         const matchupIDSet = new Set<string>();
         for (const matchup of this.matchupList ?? []) {
             if (matchup.matchID && isNaN(parseInt(matchup.matchID)))
@@ -341,8 +346,23 @@ export default class Schedule extends Vue {
     }
 
     mounted () {
-        this.stageList = this.tournament?.stages.filter(stage => stage.stageType !== StageType.Qualifiers) ?? [];
-        this.index = this.stageList.findIndex(stage => stage.timespan.end.getTime() > Date.now());
+        for(const stage of (this.tournament?.stages ?? [])) {
+            if (stage.stageType === StageType.Qualifiers)
+                continue;
+            if (stage.rounds.length < 2) {
+                this.stageList.push(stage);
+                if(this.index === -1 && stage.timespan.end > new Date()) {
+                    this.index = this.stageList.length - 1;
+                }
+            } else {
+                for(const round of stage.rounds) {
+                    this.stageList.push(round);
+                    if(this.index === -1 && stage.timespan.end > new Date()) {
+                        this.index = this.stageList.length - 1;
+                    }
+                }
+            }
+        }
         if (this.index === -1)
             this.index = this.stageList.length - 1;
     }
@@ -380,7 +400,7 @@ export default class Schedule extends Vue {
     scrollBracket (event: Event) {
         if (!(event instanceof DragEvent))
             return;
-        
+
         event.dataTransfer!.dropEffect = "move";
         const bracketContainer = this.$refs.bracketContainer;
         const bracketScroll = this.$refs.bracketScroll;
@@ -403,7 +423,7 @@ export default class Schedule extends Vue {
     }
 
     async updateMatchup () {
-        await this.$store.dispatch("open/setMatchups", this.selectedStage?.ID);
+        await this.$store.dispatch("open/setMatchups", this.selectedStage);
     }
 }
 
