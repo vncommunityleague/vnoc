@@ -52,7 +52,7 @@
                 <!-- RIGHT: register your team-->
                 <div class="index_portal__section">
                     <OpenFrontPageButton
-                        :link="loggedInUser ? loggedInUser.discord.username ? '/team/create' : '/api/login/discord?site=rescup&redirect=/team/create' : '/api/login/osu?site=rescup&redirect=/'"
+                        :link="loggedInUser ? loggedInUser.discord.username ? '/team/create' : '/api/login/discord?site=vnoc&redirect=/team/create' : '/api/login/osu?site=vnoc&redirect=/'"
                         :external="loggedInUser?.discord.username ? false : true"
                     >
                         <template #title>
@@ -68,7 +68,7 @@
                                 href="http://wooting.io"
                                 target="_blank"
                             >
-<!--                                <img src="../../Assets/img/partners/wooting.png">-->
+                                <img src="../../Assets/img/partners/wooting.png">
                             </a>
                         </div>
                     </div>
@@ -97,20 +97,20 @@ const openModule = namespace("open");
         return {
             title: this.$store.state.open.title,
             meta: [
-                {hid: "description", name: "description", content: "Resurrection Cup 2025 (also known as Resurrection Cup: Regulus Revolution), one of osu! standard's largest tournaments. Organized by Phreel and Hoaq, gathering some of the most skilled to the most strategic players from the community. All this to determine who's securing the winner's throne... until next year that is." || ""},
+                {hid: "description", name: "description", content: "Giải đấu osu! standard hàng đầu Việt Nam." || ""},
 
-                {hid: "og:site_name", property: "og:site_name", content: "Resurrection Cup 2025"},
-                {hid: "og:title", property: "og:title", content: "Resurrection Cup 2025"},
-                {hid: "og:url", property: "og:url", content: `https://rescup.xyz${this.$route.path}`},
-                {hid: "og:description", property: "og:description", content: "Resurrection Cup 2025 (also known as Resurrection Cup: Regulus Revolution), one of osu! standard's largest tournaments. Organized by Phreel and Hoaq, gathering some of the most skilled to the most strategic players from the community. All this to determine who's securing the winner's throne... until next year that is."},
+                {hid: "og:site_name", property: "og:site_name", content: "Vietnam osu! Championship 2025"},
+                {hid: "og:title", property: "og:title", content: "Vietnam osu! Championship 2025"},
+                {hid: "og:url", property: "og:url", content: `https://vnoc.hoaq.works${this.$route.path}`},
+                {hid: "og:description", property: "og:description", content: "Vietnam osu! Championship 2025 là giải đấu hàng đầu về osu! standard dành riêng cho cộng đồng người chơi tại Việt Nam."},
                 {hid: "og:image",property: "og:image", content: require("../../Assets/img/site/open/banner.png")},
 
-                {name: "twitter:title", content: "Resurrection Cup 2025"},
-                {name: "twitter:description", content: "Resurrection Cup 2025 (also known as Resurrection Cup: Regulus Revolution), one of osu! standard's largest tournaments. Organized by Phreel and Hoaq, gathering some of the most skilled to the most strategic players from the community. All this to determine who's securing the winner's throne... until next year that is." || ""},
+                {name: "twitter:title", content: "Vietnam osu! Championship 2025"},
+                {name: "twitter:description", content: "Vietnam osu! Championship 2025 là giải đấu hàng đầu về osu! standard dành riêng cho cộng đồng người chơi tại Việt Nam." || ""},
                 {name: "twitter:image", content: require("../../Assets/img/site/open/banner.png")},
                 {name: "twitter:image:src", content: require("../../Assets/img/site/open/banner.png")},
             ],
-            link: [{rel: "canonical", hid: "canonical", href: `https://rescup.xyz`}],
+            link: [{rel: "canonical", hid: "canonical", href: `https://vnoc.hoaq.works`}],
         };
     },
 })
@@ -127,7 +127,7 @@ export default class Default extends Vue {
     };
 
     optionsRange: Intl.DateTimeFormatOptions = {
-        month: "long", // Full month name (e.g., "July")
+        month: "short", // Full month name (e.g., "July")
         day: "numeric", // Day of the month (e.g., "01")
     };
 

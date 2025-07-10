@@ -40,7 +40,7 @@ export const state = (): OpenState => ({
 
 export const mutations: MutationTree<OpenState> = {
     setTitle (openState, year: number | undefined) {
-        openState.title = `Resurrection Cup ${year}` || "";
+        openState.title = `Vietnam osu! Championship ${year}` || "";
     },
     setTournament (openState, tournament: Tournament | undefined) {
         if (tournament) {

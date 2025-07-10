@@ -83,7 +83,7 @@
                         />
                         <img
                             class="info_desc__list_wrapper__image info_desc__list_wrapper__image--small"
-                            src="../../Assets/img/site/open/info/w1.png"
+                            src="../../Assets/img/site/open/info/swiss.png"
                         >
                     </div>
                     <hr class="line--red line--bottom-space">
@@ -93,10 +93,10 @@
                             class="info_desc__list"
                             v-html="$t('open.info.tournamentStructureText.ko')"
                         />
-                        <img 
-                            class="info_desc__list_wrapper__image"
-                            src="../../Assets/img/site/open/info/w2.png"
-                        >
+<!--                        <img -->
+<!--                            class="info_desc__list_wrapper__image"-->
+<!--                            src="../../Assets/img/site/open/info/w2.png"-->
+<!--                        >-->
                     </div>
                 </div>
                 <OpenTitle
