@@ -195,8 +195,8 @@
                         class="info_stage_panel"
                     >
                         <div class="info_stage_title">
-                            {{ $t(`open.stages.${stage.name.toLowerCase()}`) }} 
-                            <span class="info_stage_title--red">{{ $t(`open.stages.abbreviations.${stage.abbreviation.toLowerCase()}`) }}</span> 
+                            {{ $t(`open.stages.${stage.name.toLowerCase()}`) }} ư
+                            <span class="info_stage_title--red">{{ $t(`open.stages.abbreviations.${stage.abbreviation.toLowerCase()}`) }}</span>
                             <div class="info_stage_title__status">
                                 <MatchStatus 
                                     class="status"
@@ -674,7 +674,7 @@ export default class Info extends Vue {
 
      &_stage_title {
         position: relative;
-        font-family: $font-zurich;
+        font-family: $font-montserrat;
         font-size: $font-xxxl;
 
         &__status {

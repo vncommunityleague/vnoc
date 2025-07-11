@@ -98,13 +98,13 @@
                     <template #icon>
                         <a 
                             class="socials__link" 
-                            href="https://corsace.io"
+                            href="https://facebook.com/VnCommunityLeague"
                             target="_blank"
                         >
                             <img
                                 class="socials__icon"
                                 :class="`socials__icon--${viewTheme}`"
-                                src="../../Assets/img/corsace.png"
+                                src="../../Assets/img/vcl.png"
                                 alt=""
                             >
                         </a>
@@ -115,24 +115,7 @@
                     <template #icon>
                         <a
                             class="socials__link"
-                            href="https://twitter.com/corsace_"
-                            target="_blank"
-                        >
-                            <img
-                                class="socials__icon"
-                                :class="`socials__icon--${viewTheme}`"
-                                src="../../Assets/img/social/twitter.png"
-                                alt=""
-                            >
-                        </a>
-                    </template>
-                    {{ $t("open.footer.twitter") }}
-                </Tooltip>
-                <Tooltip>
-                    <template #icon>
-                        <a
-                            class="socials__link"
-                            href="https://discord.gg/Z6vEMsr"
+                            href="https://discord.gg/Y8vjd93FXp"
                             target="_blank"
                         >
                             <img
@@ -149,7 +132,7 @@
                     <template #icon>
                         <a
                             class="socials__link"
-                            href="https://www.twitch.tv/corsace"
+                            href="https://www.twitch.tv/vncommunityleague"
                             target="_blank"
                         >
                             <img
@@ -166,7 +149,7 @@
                     <template #icon>
                         <a
                             class="socials__link"
-                            href="https://youtube.com/corsace"
+                            href="https://youtube.com/@vncommunityleague"
                             target="_blank"
                         >
                             <img
@@ -183,7 +166,7 @@
                     <template #icon>
                         <a
                             class="socials__link"
-                            href="https://github.com/corsace/corsace"
+                            href="https://github.com/vncommunityleague/vnoc"
                             target="_blank"
                         >
                             <img
@@ -200,7 +183,7 @@
                     <template #icon>
                         <a
                             class="socials__link"
-                            href="https://docs.google.com/spreadsheets/d/1f2538nh9McAii15EJkHU18fi65ICQihxsmvTK-qhA0w"
+                            href="https://docs.google.com/spreadsheets/d/1h2akeQIgphGPXFe0995p5ujangNYdKotvzp2QvBESWE/edit?rm=minimal"
                             target="_blank"
                         >
                             <img
@@ -300,7 +283,7 @@ export default class Default extends Mixins(CentrifugeMixin) {
 
 .header {
     border-bottom: 1px solid $open-red;
-    background-image: url("../../Assets/img/site/open/checkers.svg"), linear-gradient(0deg, white, white);
+    background-image: url("../../Assets/img/site/open/checkers.svg"), linear-gradient(0deg, #1F0D0C, #1F0D0C);
     background-repeat: no-repeat;
     background-position: left center;
     width: 100vw;
@@ -339,10 +322,10 @@ export default class Default extends Mixins(CentrifugeMixin) {
         &-item {
             font-weight: 600;
             text-decoration: none;
-            color: $open-red;
+            color: #FFA1A1;
 
             &:hover {
-                color: $open-red;
+                color: #FFBFBF;
                 text-decoration: none;
             }
 

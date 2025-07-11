@@ -185,6 +185,13 @@
 }
 
 @font-face {
+    font-family: Montserrat;
+    src: url("../fonts/Montserrat-ExtraBoldItalic.ttf");
+    font-style: italic;
+    font-weight: bold;
+}
+
+@font-face {
     font-family: 'Inter';
     src: url("../fonts/Inter/Inter-Thin.woff2") format('woff2');
     font-weight: 100;
@@ -309,6 +316,8 @@
     font-weight: 900;
     font-style: italic;
 }
+
+
 
 
 :root {

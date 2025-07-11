@@ -145,7 +145,7 @@ export default class QualifiersView extends Vue {
             &_text {
                 display: flex;
                 align-items: center;
-                font-family: $font-zurich;
+                font-family: $font-montserrat;
                 font-weight: bold;
                 font-style: italic;
                 font-size: $font-xxxl;

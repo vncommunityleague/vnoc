@@ -123,10 +123,10 @@ import TheFooter from "../../Assets/components/footer/TheFooter.vue";
 })
 export default class Default extends Vue {
 
-    @State viewTheme!: "light" | "dark";
+    @State viewTheme!: "light";
 
     async mounted () {
-        await this.$store.dispatch("setViewTheme", "dark");
+        await this.$store.dispatch("setViewTheme", "light");
     }
     
 }

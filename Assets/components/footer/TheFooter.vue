@@ -17,18 +17,12 @@
 import { Vue, Component } from "vue-property-decorator";
 import { State } from "vuex-class";
 
-import LanguageSwitcher from "./LanguageSwitcher.vue";
-import ThemeSwitcher from "./ThemeSwitcher.vue";
-
 @Component({
-    components: {
-        LanguageSwitcher,
-        ThemeSwitcher,
-    },
+    components: {},
 })
 export default class TheFooter extends Vue {
     @State site!: string;
-    @State viewTheme!: "light" | "dark";
+    @State viewTheme!: "light";
 
     isSmall = false;
 
