@@ -78,7 +78,7 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64
-          push: ${{ github.repository == 'truongthinh2905/vnoc' && github.event_name != 'pull_request_target' }}
+          push: ${{ github.repository == 'vncommunityleague/vnoc' && github.event_name != 'pull_request_target' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
       -
