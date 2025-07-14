@@ -102,6 +102,7 @@ declare module "node-config-ts" {
         cookiesDomain: string;
 
         rescup: IRemoteServiceConfig;
+        vnoc: ISubSiteConfig;
         ayim: ISubSiteConfig;
         corsace: ISubSiteConfig;
         closed: ISubSiteConfig;

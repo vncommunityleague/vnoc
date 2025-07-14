@@ -57,6 +57,12 @@
     "rescup": {
         "publicUrl": "@@RESCUP_PUBLICURL"
     },
+    "vnoc": {
+        "host": "::",
+        "port": 80,
+        "publicUrl": "@@VNOC_PUBLICURL",
+        "ssr": "@@VNOC_SSR"
+    },
     "ayim": {
         "host": "::",
         "port": 80,
