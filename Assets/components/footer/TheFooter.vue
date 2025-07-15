@@ -43,8 +43,8 @@ export default class TheFooter extends Vue {
 
 .footer {
     &--light {
-        background-color: white;
-        color: black;
+        background-color:#1f0d0c;
+        color: #ffbfbf;
     }
     &--dark {
         background-color: $dark;

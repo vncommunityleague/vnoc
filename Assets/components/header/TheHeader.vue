@@ -154,12 +154,12 @@ export default class TheHeader extends Vue {
 @import '@s-sass/_variables';
 
 .header {
+     &--light {
+        background-color: #ffa1a1;
+        color: #0f0606;
+    }
     &--dark {
         background-color: $dark;
-    }
-    &--light {
-        background-color: white;
-        color: black;
     }
     position: relative;
     top: 0;

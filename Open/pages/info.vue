@@ -75,7 +75,7 @@
                 </OpenTitle>
                 <div class="info_desc__text info_desc__text--noAlign">
                     <span v-html="$t('open.info.tournamentStructureText.initialText')" />
-                    <h2>{{ $t('open.info.tournamentStructureText.swHeader')}}</h2>
+                    <h2>{{ $t('open.info.tournamentStructureText.swHeader') }}</h2>
                     <div class="info_desc__list_wrapper">
                         <ul
                             class="info_desc__list"
@@ -93,10 +93,10 @@
                             class="info_desc__list"
                             v-html="$t('open.info.tournamentStructureText.ko')"
                         />
-<!--                        <img -->
-<!--                            class="info_desc__list_wrapper__image"-->
-<!--                            src="../../Assets/img/site/open/info/w2.png"-->
-<!--                        >-->
+                        <!-- <img -->
+                        <!-- class="info_desc__list_wrapper__image"-->
+                        <!-- src="../../Assets/img/site/open/info/w2.png" -->
+                        <!-- > -->
                     </div>
                 </div>
                 <OpenTitle
