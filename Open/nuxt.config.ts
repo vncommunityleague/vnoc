@@ -11,7 +11,7 @@ export default {
         },
     },
     head: {
-        title: "Corsace Open",
+        title: "Vietnam osu! Championship 2025",
         link: [
             { rel: "icon", type: "image/x-icon", href: "/open/favicon.ico" },
             { rel: "icon", type: "image/x-icon", href: "/open/favicon.png" },
@@ -20,10 +20,10 @@ export default {
             { charset: "utf-8" },
             { name: "viewport", content: "width=1024" },
             // { name: "viewport", content: "width=device-width, initial-scale=1" }, TODO: Fix mobile
-            { property: "og:site_name", content: "Corsace Open" },
+            { property: "og:site_name", content: "Vietnam osu! Championship 2025" },
             { hid: "theme-color", name: "theme-color", content: "#F24141" },
 
-            { hid: "og:url", property: "og:url", content: "https://open.corsace.io"},
+            { hid: "og:url", property: "og:url", content: "https://vnoc.hoaq.works"},
             { hid: "og:type", property: "og:type", content: "website"},
 
             { hid: "og:locale", property: "og:locale", content: "en_US"},
@@ -40,10 +40,10 @@ export default {
             { hid: "og:image:width", property: "og:image:width", content: "547" },
             { hid: "og:image:height", property: "og:image:height", content: "223" },
             { hid: "og:image:type", property: "og:image:type", content: "image/png" },
-            { hid: "og:image:alt", property: "og:image:alt", content: "Corsace Open" },
+            { hid: "og:image:alt", property: "og:image:alt", content: "Vietnam osu! Championship 2025" },
             
             { name: "twitter:site", content: "@corsace_" },
-            { name: "twitter:domain", content: "https://open.corsace.io" },
+            { name: "twitter:domain", content: "https://vnoc.hoaq.works" },
             { name: "twitter:card", content: "summary_large_image" },
 
             {hid: "keywords", property: "keywords", content: "corsace, corsace open, osu!, tournament, qualifiers, teams"},

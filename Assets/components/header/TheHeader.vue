@@ -225,7 +225,7 @@ export default class TheHeader extends Vue {
 
         font-weight: bold;
         &--light {
-            color: black;
+            color: #ffa1a1;
         }
         &--dark {
             color: white;
