@@ -288,7 +288,7 @@ export const actions: ActionTree<OpenState, OpenState> = {
     },
     async setStaffList ({ commit }) {
         // const { data } = await this.$axios.get<{ staff: StaffList[] }>(`/api/tournament/${tournamentID}/staff`);
-        const response = await fetch("https://static.rescup.xyz/staff.json");
+        const response = await fetch("https://s.hoaq.works/vnoc6_staff.json");
 
         if (!response.ok) {
             return;
