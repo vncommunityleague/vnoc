@@ -1,6 +1,6 @@
 <template>
     <div class="layout layout--open">
-        <DevBanner 
+        <DevBanner
             v-if="devBanner"
             @close="hideBanner()"
         />
@@ -8,9 +8,9 @@
             class="header"
             :notif="teamInvites && teamInvites.length > 0"
         >
-            <a href="/">          
+            <a href="/">
                 <img
-                    src="../../Assets/img/site/open/logo.png"
+                    src="../../Assets/img/site/open/logo.svg"
                     class="header__logo"
                     :class="`header__logo--${viewTheme}`"
                 >
@@ -30,32 +30,32 @@
                     {{ $t("open.navbar.info") }}
                 </NuxtLink>
                 <NuxtLink
-                    to="/qualifiers" 
+                    to="/qualifiers"
                     class="header__nav-item"
                 >
                     {{ $t("open.navbar.qualifiers") }}
                 </NuxtLink>
                 <NuxtLink
-                    to="/teams" 
+                    to="/players"
                     class="header__nav-item"
                 >
-                    {{ $t("open.navbar.teams") }}
+                    {{ $t("open.navbar.players") }}
                 </NuxtLink>
                 <NuxtLink
-                    to="/schedule" 
+                    to="/schedule"
                     class="header__nav-item"
                 >
                     {{ $t("open.navbar.schedule") }}
                 </NuxtLink>
 
                 <NuxtLink
-                    to="/mappool" 
+                    to="/mappool"
                     class="header__nav-item"
                 >
                     {{ $t("open.navbar.mappool") }}
                 </NuxtLink>
                 <NuxtLink
-                    to="/staff" 
+                    to="/staff"
                     class="header__nav-item"
                 >
                     {{ $t("open.navbar.staff") }}
@@ -68,36 +68,36 @@
                 >
                     <MenuItem>{{ $t("open.navbar.referee").toString().toLowerCase() }}</MenuItem>
                 </NuxtLink>
-                <NuxtLink
-                    to="/teams?s=my"
-                >
-                    <MenuItem>{{ $t("open.navbar.myTeams") }}</MenuItem>
-                </NuxtLink>
-                <NuxtLink
-                    to="/team/invites"
-                >
-                    <MenuItem>
-                        {{ $t("open.navbar.invitations") }}
-                        <div
-                            v-if="teamInvites && teamInvites.length > 0"
-                            class="header__notification"
-                        />
-                    </MenuItem>
-                </NuxtLink>
+                <!--                <NuxtLink-->
+                <!--                    to="/teams?s=my"-->
+                <!--                >-->
+                <!--                    <MenuItem>{{ $t("open.navbar.myTeams") }}</MenuItem>-->
+                <!--                </NuxtLink>-->
+                <!--                <NuxtLink-->
+                <!--                    to="/team/invites"-->
+                <!--                >-->
+                <!--                    <MenuItem>-->
+                <!--                        {{ $t("open.navbar.invitations") }}-->
+                <!--                        <div-->
+                <!--                            v-if="teamInvites && teamInvites.length > 0"-->
+                <!--                            class="header__notification"-->
+                <!--                        />-->
+                <!--                    </MenuItem>-->
+                <!--                </NuxtLink>-->
             </template>
         </the-header>
-        
-        <nuxt 
-            class="main" 
+
+        <nuxt
+            class="main"
             :class="`main--${viewTheme}`"
         />
-        
+
         <the-footer class="footer">
             <div class="socials">
                 <Tooltip>
                     <template #icon>
-                        <a 
-                            class="socials__link" 
+                        <a
+                            class="socials__link"
                             href="https://facebook.com/VnCommunityLeague"
                             target="_blank"
                         >
@@ -197,7 +197,7 @@
                     {{ $t("open.footer.sheet") }}
                 </Tooltip>
             </div>
-            <div 
+            <div
                 name="temp"
                 style="width: 79%;"
             />
@@ -234,7 +234,7 @@ const openModule = namespace("open");
     middleware: "index",
 })
 export default class Default extends Mixins(CentrifugeMixin) {
-    
+
     @State viewTheme!: "light" | "dark";
     @State loggedInUser!: null | UserInfo;
 
@@ -244,7 +244,7 @@ export default class Default extends Mixins(CentrifugeMixin) {
     devBanner = false;
     isSmall = false;
 
-    async mounted () {
+    async mounted() {
         if (process.client) {
             this.isSmall = window.innerWidth < 576;
             window.addEventListener("resize", () => {
@@ -253,7 +253,7 @@ export default class Default extends Mixins(CentrifugeMixin) {
         }
 
         await this.$store.dispatch("setViewTheme", "dark");
-        
+
         // Get devBanner from localStorage, will be a number equivalent to Date.now() if it exists, if it doesn't exist, or if it's been past the value, then show the banner
         const devBannerTime = localStorage.getItem("devBanner");
         if (!devBannerTime || parseInt(devBannerTime) < Date.now())
@@ -265,12 +265,12 @@ export default class Default extends Mixins(CentrifugeMixin) {
         await this.initCentrifuge(`invitations:${this.loggedInUser.ID}`);
     }
 
-    handleData (ctx: ExtendedPublicationContext) {
+    handleData(ctx: ExtendedPublicationContext) {
         if (ctx.data.type === "invite")
             this.$store.commit("open/addInvite", ctx.data.team);
     }
 
-    hideBanner () {
+    hideBanner() {
         localStorage.setItem("devBanner", (Date.now() + 604800000).toString());
         this.devBanner = false;
     }
@@ -283,11 +283,24 @@ export default class Default extends Mixins(CentrifugeMixin) {
 
 .header {
     border-bottom: 1px solid $open-red;
+    background-origin: content-box;
     background-image: url("../../Assets/img/site/open/checkers.svg"), linear-gradient(0deg, #1F0D0C, #1F0D0C);
     background-repeat: no-repeat;
     background-position: left center;
+    background-size: 64px;
     width: 100vw;
     position: relative;
+
+
+    padding-left: 15px;
+
+    @include breakpoint(mobile) {
+        padding-left: 10px;
+    }
+
+    @include breakpoint(laptop) {
+        padding-left: 30px;
+    }
 
     &__notification {
         width: 8px;
@@ -297,6 +310,7 @@ export default class Default extends Mixins(CentrifugeMixin) {
     }
 
     &__logo {
+        height: 34px;
         padding-left: 6px;
         margin-top: 27.5px;
         @include breakpoint(tablet) {
@@ -306,7 +320,7 @@ export default class Default extends Mixins(CentrifugeMixin) {
             padding-left: 9px;
         }
         @include breakpoint(desktop) {
-            padding-left: 130px;
+            padding-left: 76px;
         }
     }
 
@@ -338,8 +352,8 @@ export default class Default extends Mixins(CentrifugeMixin) {
             &.nuxt-link-exact-active::after {
                 content: "";
                 position: absolute;
-                left: calc(50% - 4.5px/2);
-                bottom: -7px; 
+                left: calc(50% - 4.5px / 2);
+                bottom: -7px;
                 width: 4.5px;
                 height: 4.5px;
                 transform: rotate(-45deg);
@@ -370,11 +384,11 @@ export default class Default extends Mixins(CentrifugeMixin) {
         filter: brightness(100);
         @include breakpoint(tablet) {
             margin-right: 5px;
-            height: 25px;   
+            height: 25px;
         }
         @include breakpoint(laptop) {
             margin-right: 10px;
-            height: 30px;   
+            height: 30px;
         }
         // &--light {
         //     filter: invert(1);

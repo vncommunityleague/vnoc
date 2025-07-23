@@ -1,29 +1,36 @@
 <template>
-    <NuxtLink
-        :to="`/team/${teamSync.ID}`"
-        class="open_card_team"
-    >
-        <ul class="open_card_team__members">
-            <li 
-                v-for="member in teamSync.members"
-                :key="member.ID"
-                class="open_card_team__member"
-                :class="{ 'open_card_team__member_leader': member.isCaptain }"
-            >
-                <div class="open_card_team__member_username">
-                    {{ member.username }}
-                </div>
-                <div class="open_card_team__member_rank">
-                    #{{ Math.round(member.rank) }}
-                </div>
-            </li>
-        </ul>
+    <a
+        :href="`https://osu.ppy.sh/users/${teamSync.members[0].osuID}`"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="open_card_team">
+        <!--    <NuxtLink-->
+        <!--        :to="`/team/${teamSync.ID}`"-->
+        <!--        class="open_card_team"-->
+        <!--    >-->
+        <!--        <ul class="open_card_team__members">-->
+        <!--            <li -->
+        <!--                v-for="member in teamSync.members"-->
+        <!--                :key="member.ID"-->
+        <!--                class="open_card_team__member"-->
+        <!--                :class="{ 'open_card_team__member_leader': member.isCaptain }"-->
+        <!--            >-->
+        <!--                <div class="open_card_team__member_username">-->
+        <!--                    {{ member.username }}-->
+        <!--                </div>-->
+        <!--                <div class="open_card_team__member_rank">-->
+        <!--                    #{{ Math.round(member.rank) }}-->
+        <!--                </div>-->
+        <!--            </li>-->
+        <!--        </ul>-->
         <div
             class="open_card_team__img"
             :style="{ 'backgroundImage': `radial-gradient(transparent, rgba(0,0,0,0.33)), url(${teamSync.avatarURL || require('../../../Assets/img/site/open/team/default.png')})` }"
         />
         <div class="open_card_team__name">
-            {{ teamSync.name }} <span v-if="!registeredSync">({{ $t("open.components.openCardTeam.unregistered") }})</span>
+            {{ teamSync.members[0].username }} <span v-if="!registeredSync">({{
+                $t("open.components.openCardTeam.unregistered")
+            }})</span>
         </div>
         <div class="open_card_team__text">
             <div class="open_card_team__text_group">
@@ -34,19 +41,20 @@
                     {{ Math.round(teamSync.rank) }}
                 </div>
             </div>
-            <div class="open_card_team__text_group">
-                <div class="open_card_team__text_group_label">
-                    {{ $t("open.components.openCardTeam.teambwsAverage") }}
-                </div>
-                <div class="open_card_team__text_group_data">
-                    {{ Math.round(teamSync.BWS) }}
-                </div>
-                <div class="open_card_team__text_group_label--vertical">
-                    {{ $t("open.components.openCardTeam.bws") }}
-                </div>
-            </div>
+            <!--            <div class="open_card_team__text_group">-->
+            <!--                <div class="open_card_team__text_group_label">-->
+            <!--                    {{ $t("open.components.openCardTeam.teambwsAverage") }}-->
+            <!--                </div>-->
+            <!--                <div class="open_card_team__text_group_data">-->
+            <!--                    {{ Math.round(teamSync.BWS) }}-->
+            <!--                </div>-->
+            <!--                <div class="open_card_team__text_group_label&#45;&#45;vertical">-->
+            <!--                    {{ $t("open.components.openCardTeam.bws") }}-->
+            <!--                </div>-->
+            <!--            </div>-->
         </div>
-    </NuxtLink>
+        <!--    </NuxtLink>-->
+    </a>
 </template>
 
 <script lang="ts">

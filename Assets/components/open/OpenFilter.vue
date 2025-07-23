@@ -16,7 +16,7 @@
             >
                 <div class="open_filter__dropdown_triangle_up" />
                 <div class="open_filter__dropdown_header">
-                    <div>VIEW</div>
+<!--                    <div>VIEW</div>-->
                     <div>SORT</div>
                 </div>
                 <div

@@ -1,35 +1,21 @@
 <template>
-    <div class="teams_list">
-        <SubHeader
-            :selections="[
-                { text: $t('open.teams.teamList'), value: 'list' },
-                { text: $t('open.teams.teamManagement'), value: 'management' },
-            ]"
-            :current-page="page"
-            @update:page="page = $event"
-        />
-        <div 
+    <div class="players_list">
+        <!--        <SubHeader-->
+        <!--            :selections="[-->
+        <!--                { text: $t('open.players.playerList'), value: 'list' },-->
+        <!--                { text: $t('open.players.teamManagement'), value: 'management' },-->
+        <!--            ]"-->
+        <!--            :current-page="page"-->
+        <!--            @update:page="page = $event"-->
+        <!--        />-->
+        <div
             v-if="page === 'list'"
-            class="teams_list__main_content"
+            class="players_list__main_content"
         >
             <OpenTitle>
-                {{ $t('open.teams.teamList') }}
+                {{ $t("open.players.playerList") }}
                 <template #right>
                     <OpenFilter>
-                        <template #view>
-                            <div
-                                :class="{ 'open_filter__selected': showUnregistered }"
-                                @click="showUnregistered = true"
-                            >
-                                {{ $t('open.teams.showAll') }}
-                            </div>
-                            <div
-                                :class="{ 'open_filter__selected': !showUnregistered }"
-                                @click="showUnregistered = false"
-                            >
-                                {{ $t('open.teams.showRegistered') }}
-                            </div>
-                        </template>
                         <template #sort>
                             <div
                                 v-for="sort in sorts"
@@ -53,18 +39,18 @@
                         </template>
                     </OpenFilter>
                     <SearchBar
-                        :placeholder="`${$t('open.teams.searchPlaceholder')}`"
+                        :placeholder="`${$t('open.players.searchPlaceholder')}`"
                         style="margin-bottom: 10px;"
                         @update:search="searchValue = $event"
                     />
                 </template>
             </OpenTitle>
             <div
-                v-if="filteredTeams.length !== 0" 
-                class="teams_list__main_content_list"
+                v-if="filteredplayers.length !== 0"
+                class="players_list__main_content_list"
             >
                 <OpenCardTeam
-                    v-for="team in filteredTeams"
+                    v-for="team in filteredplayers"
                     :key="team.ID"
                     :team="team"
                     registered
@@ -72,67 +58,67 @@
             </div>
             <div
                 v-else-if="loading"
-                class="teams_list__main_content"
+                class="players_list__main_content"
             >
-                {{ $t('open.status.loading') }}...
+                {{ $t("open.status.loading") }}...
             </div>
             <div
                 v-else
-                class="teams_list__main_content"
+                class="players_list__main_content"
             >
-                {{ $t('open.teams.noRegisteredTeams') }}
+                {{ $t("open.players.noRegisteredPlayers") }}
             </div>
         </div>
-        <div 
+        <div
             v-else-if="page === 'management' && loggedInUser?.discord.userID"
-            class="teams_list__main_content"
+            class="players_list__main_content"
         >
             <OpenTitle>
-                {{ $t('open.teams.teamManagement') }}
+                {{ $t("open.players.teamManagement") }}
                 <template #right>
                     <ContentButton
                         class="content_button--red"
                         :link="'team/create'"
                     >
-                        {{ $t('open.create.title') }}
+                        {{ $t("open.create.title") }}
                     </ContentButton>
                 </template>
             </OpenTitle>
-            <div 
-                v-if="filteredTeams.length !== 0"
-                class="teams_list__main_content_list"
+            <div
+                v-if="filteredplayers.length !== 0"
+                class="players_list__main_content_list"
             >
                 <OpenCardTeam
-                    v-for="team in filteredTeams"
+                    v-for="team in filteredplayers"
                     :key="team.ID"
                     :team="team"
-                    :registered="teamList && teamList.some(t => t.ID === team.ID)"
+                    :registered="playerList && playerList.some(t => t.ID === team.ID)"
                 />
             </div>
             <div
                 v-else
-                class="teams_list__main_content"
+                class="players_list__main_content"
             >
-                {{ $t('open.teams.noCreatedTeams') }}
+                {{ $t("open.players.noCreatedplayers") }}
             </div>
         </div>
         <div
             v-else-if="page === 'management'"
-            class="teams_list__main_content"
+            class="players_list__main_content"
         >
-            {{ $t('open.teams.loginManagement') }}
+            {{ $t("open.players.loginManagement") }}
         </div>
         <div
             v-else-if="loading"
-            class="teams_list__main_content"
+            class="players_list__main_content"
         >
-            {{ $t('open.status.loading') }}...
+            {{ $t("open.status.loading") }}...
         </div>
         <div
-            v-else 
-            class="teams_list__main_content"
+            v-else
+            class="players_list__main_content"
         >
-            {{ $t('open.teams.error') }}...
+            {{ $t("open.players.error") }}...
         </div>
     </div>
 </template>
@@ -165,88 +151,99 @@ const openModule = namespace("open");
         OpenCardTeam,
         SubHeader,
     },
-    head () {
+    head() {
         return {
             title: this.$store.state.open.title,
             meta: [
-                {hid: "description", name: "description", content: this.$store.state.open.tournament?.description || ""},
+                {
+                    hid: "description",
+                    name: "description",
+                    content: this.$store.state.open.tournament?.description || ""
+                },
 
-                {hid: "og:site_name", property: "og:site_name", content: this.$store.state.open.title},
-                {hid: "og:title", property: "og:title", content: this.$store.state.open.title},
-                {hid: "og:url", property: "og:url", content: `https://open.corsace.io${this.$route.path}`}, 
-                {hid: "og:description", property: "og:description", content: this.$store.state.open.tournament?.description || ""},
-                {hid: "og:image",property: "og:image", content: require("../../Assets/img/site/open/banner.png")},
-                
-                {name: "twitter:title", content: this.$store.state.open.title},
-                {name: "twitter:description", content: this.$store.state.open.tournament?.description || ""},
-                {name: "twitter:image", content: require("../../Assets/img/site/open/banner.png")},
-                {name: "twitter:image:src", content: require("../../Assets/img/site/open/banner.png")},
+                { hid: "og:site_name", property: "og:site_name", content: this.$store.state.open.title },
+                { hid: "og:title", property: "og:title", content: this.$store.state.open.title },
+                { hid: "og:url", property: "og:url", content: `https://open.corsace.io${this.$route.path}` },
+                {
+                    hid: "og:description",
+                    property: "og:description",
+                    content: this.$store.state.open.tournament?.description || ""
+                },
+                { hid: "og:image", property: "og:image", content: require("../../Assets/img/site/open/banner.png") },
+
+                { name: "twitter:title", content: this.$store.state.open.title },
+                { name: "twitter:description", content: this.$store.state.open.tournament?.description || "" },
+                { name: "twitter:image", content: require("../../Assets/img/site/open/banner.png") },
+                { name: "twitter:image:src", content: require("../../Assets/img/site/open/banner.png") },
             ],
-            link: [{rel: "canonical", hid: "canonical", href: `https://open.corsace.io${this.$route.path}`}],
+            link: [ { rel: "canonical", hid: "canonical", href: `https://open.corsace.io${this.$route.path}` } ],
         };
     },
 })
-export default class Teams extends Mixins(CentrifugeMixin) {
+export default class players extends Mixins(CentrifugeMixin) {
 
     @State loggedInUser!: null | UserInfo;
     @openModule.State tournament!: Tournament | null;
-    @openModule.State myTeams!: Team[] | null;
-    @openModule.State teamList!: TeamList[] | null;
+    @openModule.State myplayers!: Team[] | null;
+    @openModule.State playerList!: TeamList[] | null;
 
     loading = true;
     showUnregistered = false;
     sortDir: "ASC" | "DESC" = "ASC";
-    sorts = ["RANK", "BWS AVG", "A-Z", "ID", "TEAM SIZE"] as const;
+    // sorts = ["RANK", "BWS AVG", "A-Z", "ID", "TEAM SIZE"] as const;
+    sorts = [ "RANK", "A-Z", "ID" ] as const;
     sortFunctions: Record<typeof this.sorts[number], (a: TeamList, b: TeamList) => number> = {
         "RANK": (a, b) => a.rank - b.rank,
-        "BWS AVG": (a, b) => a.BWS - b.BWS,
+        // "BWS AVG": (a, b) => a.BWS - b.BWS,
         "A-Z": (a, b) => a.name.localeCompare(b.name),
         "ID": (a, b) => a.ID - b.ID,
-        "TEAM SIZE": (a, b) => a.members.length - b.members.length,
+        // "TEAM SIZE": (a, b) => a.members.length - b.members.length,
     };
-    currentSort: typeof this.sorts[number] = "BWS AVG";
+    currentSort: typeof this.sorts[number] = "RANK";
     searchValue = "";
     page: "list" | "management" = "list";
-    unregisteredTeams: TeamList[] | null = null;
+    unregisteredPlayers: TeamList[] | null = null;
 
-    get filteredTeams () {
+    get filteredplayers() {
         if (this.page === "management")
-            return this.myTeams ?? [];
-        let teams = [...(this.teamList ?? [])];
-        if (this.showUnregistered && this.unregisteredTeams)
-            teams = [...teams, ...this.unregisteredTeams];
+            return this.myplayers ?? [];
+        let players = [ ...(this.playerList ?? []) ];
+        if (this.showUnregistered && this.unregisteredPlayers)
+            players = [ ...players, ...this.unregisteredPlayers ];
         if (!this.searchValue) // consider asc/desc
-            return teams.sort((a, b) => this.sortDir === "ASC" ? this.sortFunctions[this.currentSort](a, b) : this.sortFunctions[this.currentSort](b, a)); 
+            return players.sort((a, b) => this.sortDir === "ASC" ? this.sortFunctions[this.currentSort](a, b) : this.sortFunctions[this.currentSort](b, a));
 
-        return teams.filter(team => 
+        return players.filter(team =>
             team.name.toLowerCase().includes(this.searchValue.toLowerCase()) ||
             team.members.some(member => member.username.toLowerCase().includes(this.searchValue.toLowerCase())) ||
             team.ID.toString().includes(this.searchValue.toLowerCase()) ||
             team.members.some(member => member.osuID.toLowerCase().includes(this.searchValue.toLowerCase()))
-        ).sort((a, b) => this.sortFunctions[this.currentSort](a, b) * (this.sortDir === "ASC" ? 1 : -1));
+        ).sort((a, b) => this.sortFunctions[this.currentSort](a, b) * (this.sortDir === "ASC" ? 1 : - 1));
     }
 
-    async mounted () {
+    async mounted() {
         if (this.$route.query.s === "my")
             this.page = "management";
         this.loading = true;
         if (this.tournament) {
             await this.$store.dispatch("open/setTeamList", this.tournament.ID);
-            const { data } = await this.$axios.get<{ teams: TeamList[] }>(`/api/tournament/${this.tournament.ID}/unregisteredTeams`);
+            const { data } = await this.$axios.get<{
+                teams: TeamList[]
+            }>(`/api/tournament/${this.tournament.ID}/unregisteredTeams`);
             if (!data.success) {
-                alert("Failed to get unregistered teams, check console for more information");
+                alert("Failed to get unregistered players, check console for more information");
                 console.error(data.error);
                 return;
             }
-            this.unregisteredTeams = data.teams;
+            this.unregisteredPlayers = data.teams;
         }
         this.loading = false;
 
         if (this.tournament)
-            await this.initCentrifuge(`teams:${this.tournament.ID}`);
+            await this.initCentrifuge(`players:${this.tournament.ID}`);
     }
 
-    handleData (ctx: ExtendedPublicationContext) {
+    handleData(ctx: ExtendedPublicationContext) {
         if (ctx.data.type === "teamRegistered")
             this.$store.commit("open/addTeamList", ctx.data.team);
     }
@@ -256,7 +253,7 @@ export default class Teams extends Mixins(CentrifugeMixin) {
 <style lang="scss">
 @import '@s-sass/_variables';
 
-.teams_list {
+.players_list {
 
     &__button {
         min-width: 150px;

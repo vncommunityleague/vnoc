@@ -155,7 +155,7 @@ export default class TheHeader extends Vue {
 
 .header {
      &--light {
-        background-color: #ffa1a1;
+        background-color: #1f0d0c;
         color: #0f0606;
     }
     &--dark {
@@ -251,9 +251,9 @@ export default class TheHeader extends Vue {
 
     &__welcome {
         &--light {
-            color: $dark-gray;
+            color: #ffa1a1;
             & > a {
-                color: $dark-gray;
+                color: #ffa1a1;
             }
         }
         &--dark {
@@ -318,6 +318,7 @@ export default class TheHeader extends Vue {
     }
 
     &__username {
+        color: #ffffff;
         text-transform: uppercase;
         text-overflow: ellipsis;
         &--open {
@@ -331,7 +332,7 @@ export default class TheHeader extends Vue {
 
 .hamburger {
     position: relative;
-    color: black;
+    color: #ffa1a1;
     font-size: 1.5rem;
     font-weight: bold;
     &--dark {
@@ -339,7 +340,7 @@ export default class TheHeader extends Vue {
     }
 
     &--open {
-        color: black;
+        color: #ffa1a1;
     }
 }
 

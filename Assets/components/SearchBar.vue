@@ -98,7 +98,7 @@ export default class SearchBar extends Vue {
     }
     width: 100%;
     min-width: 9rem; // any less and magnifying glass exits container
-    color: $blue;
+    color: #131313;
     padding: 7px 0;
     
     &--mca-ayim {

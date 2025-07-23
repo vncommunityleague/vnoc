@@ -480,7 +480,7 @@
             "info": "INFO",
             "referee": "REFEREE",
             "qualifiers": "QUALIFIERS",
-            "teams": "TEAMS",
+            "players": "PLAYERS",
             "schedule": "SCHEDULE",
             "mappool": "MAPPOOL",
             "staff": "STAFF",
@@ -645,15 +645,15 @@
                 "pressToClose": "Press anywhere to close"
             }
         },
-        "teams": {
-            "teamList": "TEAM LIST",
-            "teamManagement": "TEAM MANAGEMENT",
+        "players": {
+            "playerList": "PLAYER LIST",
+            "playerManagement": "TEAM MANAGEMENT",
             "error": "COULD NOT GET TEAM LIST",
             "loginManagement": "Log in to manage your teams.",
-            "searchPlaceholder": "search for user/team",
+            "searchPlaceholder": "search for user",
             "showAll": "all teams",
             "showRegistered": "registered only",
-            "noRegisteredTeams": "No teams have registered yet.",
+            "noRegisteredPlayers": "No players have registered yet.",
             "noCreatedTeams": "You are currently not in any teams",
             "editTeamInfo": "EDIT TEAM INFO",
             "leaveTeam": "LEAVE TEAM",

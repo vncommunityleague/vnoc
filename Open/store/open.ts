@@ -205,7 +205,7 @@ export const getters: GetterTree<OpenState, OpenState> = {};
 
 export const actions: ActionTree<OpenState, OpenState> = {
     async setTournament ({ commit, dispatch }) {
-        const { data } = await this.$axios.get<{ tournament: Tournament }>(`/api/tournament/10`);
+        const { data } = await this.$axios.get<{ tournament: Tournament }>(`/api/tournament/13`);
 
         if (data.success) {
             commit("setTournament", data.tournament);
