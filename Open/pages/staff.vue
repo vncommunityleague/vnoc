@@ -2,48 +2,48 @@
     <div class="staff">
         <div class="staff_main_content">
             <OpenTitle>
-                {{ $t('open.staff.title') }}
+                {{ $t("open.staff.title") }}
             </OpenTitle>
             <div
-                v-if="staffList" 
+                v-if="staffList"
                 class="staff_main_content_staff_list"
             >
-                <div 
+                <div
                     v-for="(staffRow, i) in staffList"
                     :key="i"
                     class="staff_row"
                 >
                     <div class="staff_row__title">
-                        {{ staffRow.role.toUpperCase() }} ({{ getRoleTypeName(staffRow.roleType).toUpperCase() }} ROLE)
+                        {{ staffRow.role.toUpperCase() }}
                         <hr class="line--red line--no-space">
                     </div>
                     <div class="staff_row_members">
-                        <a 
+                        <a
                             v-for="(staffMember, j) in staffRow.users"
                             :key="j"
                             class="staff_row_members_card"
-                            :style="{ 'cursor': staffMember.osuID ? 'pointer' : 'default' }"
-                            :href="staffMember.osuID ? `https://osu.ppy.sh/users/${staffMember.osuID}` : undefined"
+                            :style="{ 'cursor': 'pointer' }"
+                            :href="staffMember.url"
                         >
-                            <div 
+                            <div
                                 class="staff_row_members_card__headshot"
                                 :style="{ 'backgroundImage': `url(${staffMember.avatar})` }"
                             />
-                            <div class="staff_row_members_card__line" />
+                            <div class="staff_row_members_card__line"/>
                             <div class="staff_row_members_card_details">
                                 <div class="staff_row_members_card_details__username">
                                     {{ staffMember.username }}
                                 </div>
-                                <div 
+                                <div
                                     v-if="staffMember.country"
                                     class="staff_row_members_card_details__nationality"
                                     :style="{ 'backgroundImage': `url(https://osu.ppy.sh/images/flags/${staffMember.country}.png)` }"
                                 />
-                                <div 
+                                <div
                                     v-else
                                     class="staff_row_members_card_details__not_logged_in"
                                 >
-                                    {{ $t('open.staff.notLoggedIn') }}
+                                    {{ $t("open.staff.notLoggedIn") }}
                                 </div>
                             </div>
                         </a>
@@ -72,20 +72,28 @@ const openModule = namespace("open");
         return {
             title: this.$store.state.open.title,
             meta: [
-                {hid: "description", name: "description", content: this.$store.state.open.tournament?.description || ""},
+                {
+                    hid: "description",
+                    name: "description",
+                    content: this.$store.state.open.tournament?.description || "",
+                },
 
-                {hid: "og:site_name", property: "og:site_name", content: this.$store.state.open.title},
-                {hid: "og:title", property: "og:title", content: this.$store.state.open.title},
-                {hid: "og:url", property: "og:url", content: `https://open.corsace.io${this.$route.path}`}, 
-                {hid: "og:description", property: "og:description", content: this.$store.state.open.tournament?.description || ""},
-                {hid: "og:image",property: "og:image", content: require("../../Assets/img/site/open/banner.png")},
-                
-                {name: "twitter:title", content: this.$store.state.open.title},
-                {name: "twitter:description", content: this.$store.state.open.tournament?.description || ""},
-                {name: "twitter:image", content: require("../../Assets/img/site/open/banner.png")},
-                {name: "twitter:image:src", content: require("../../Assets/img/site/open/banner.png")},
+                { hid: "og:site_name", property: "og:site_name", content: this.$store.state.open.title },
+                { hid: "og:title", property: "og:title", content: this.$store.state.open.title },
+                { hid: "og:url", property: "og:url", content: `https://open.corsace.io${this.$route.path}` },
+                {
+                    hid: "og:description",
+                    property: "og:description",
+                    content: this.$store.state.open.tournament?.description || "",
+                },
+                { hid: "og:image", property: "og:image", content: require("../../Assets/img/site/open/banner.png") },
+
+                { name: "twitter:title", content: this.$store.state.open.title },
+                { name: "twitter:description", content: this.$store.state.open.tournament?.description || "" },
+                { name: "twitter:image", content: require("../../Assets/img/site/open/banner.png") },
+                { name: "twitter:image:src", content: require("../../Assets/img/site/open/banner.png") },
             ],
-            link: [{rel: "canonical", hid: "canonical", href: `https://open.corsace.io${this.$route.path}`}],
+            link: [ { rel: "canonical", hid: "canonical", href: `https://open.corsace.io${this.$route.path}` } ],
         };
     },
 })
@@ -129,7 +137,7 @@ $flex-gap: 25px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        
+
         &__title {
             font-size: $font-base;
             font-weight: bold;
@@ -146,10 +154,10 @@ $flex-gap: 25px;
             width: 100%;
             gap: $flex-gap;
             flex-wrap: wrap;
-            
+
             &_card {
                 display: flex;
-                flex-basis: calc(25% - $flex-gap*0.75); // 4 cards per row, 3 gaps of 25px per row
+                flex-basis: calc(25% - $flex-gap * 0.75); // 4 cards per row, 3 gaps of 25px per row
                 text-overflow: ellipsis;
                 overflow: hidden;
                 height: 75px;
@@ -162,7 +170,7 @@ $flex-gap: 25px;
                     text-decoration: none;
                     box-shadow: 0px 0px 8px 4px $darker-gray;
                 }
-                
+
                 &__headshot {
                     height: 100%;
                     width: 75px;

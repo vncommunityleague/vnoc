@@ -5,18 +5,18 @@
             class="open_filter__icon"
             @click.stop="toggleDropdown()"
         >
-            <div class="open_filter__icon_square" />
-            <div class="open_filter__icon_square" />
-            <div class="open_filter__icon_square" />
-            <div class="open_filter__icon_square" />
+            <div class="open_filter__icon_square"/>
+            <div class="open_filter__icon_square"/>
+            <div class="open_filter__icon_square"/>
+            <div class="open_filter__icon_square"/>
             <div
                 v-if="visibleDropdown"
                 class="open_filter__dropdown"
                 @click.stop
             >
-                <div class="open_filter__dropdown_triangle_up" />
+                <div class="open_filter__dropdown_triangle_up"/>
                 <div class="open_filter__dropdown_header">
-<!--                    <div>VIEW</div>-->
+                    <!--                    <div>VIEW</div>-->
                     <div>SORT</div>
                 </div>
                 <div
@@ -27,17 +27,17 @@
                             ref="diamondLeft"
                             class="open_filter__diamond open_filter__diamond--left"
                         />
-                        <slot name="view" />
+                        <slot name="view"/>
                     </div>
                     <div class="open_filter__dropdown__sort_content">
                         <div
                             ref="diamondRight"
                             class="open_filter__diamond open_filter__diamond--right"
                         />
-                        <slot name="sort" />
+                        <slot name="sort"/>
                     </div>
                 </div>
-                <div class="open_filter__dropdown_footer" />
+                <div class="open_filter__dropdown_footer"/>
             </div>
         </div>
     </div>
@@ -95,7 +95,7 @@ export default class OpenFilter extends Vue {
 
             this.diamondToSelectedValue("left");
             this.diamondToSelectedValue("right");
-            
+
             Array.from(this.$refs.diamondLeft.parentElement!.children).filter(c => {
                 if (!(c instanceof HTMLElement))
                     return false;
@@ -155,7 +155,7 @@ export default class OpenFilter extends Vue {
         &:hover {
             & .open_filter__icon_square {
                 background-color: #CD2443;
-            }   
+            }
         }
     }
 

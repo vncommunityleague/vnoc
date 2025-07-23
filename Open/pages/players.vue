@@ -151,14 +151,14 @@ const openModule = namespace("open");
         OpenCardTeam,
         SubHeader,
     },
-    head() {
+    head () {
         return {
             title: this.$store.state.open.title,
             meta: [
                 {
                     hid: "description",
                     name: "description",
-                    content: this.$store.state.open.tournament?.description || ""
+                    content: this.$store.state.open.tournament?.description || "",
                 },
 
                 { hid: "og:site_name", property: "og:site_name", content: this.$store.state.open.title },
@@ -167,7 +167,7 @@ const openModule = namespace("open");
                 {
                     hid: "og:description",
                     property: "og:description",
-                    content: this.$store.state.open.tournament?.description || ""
+                    content: this.$store.state.open.tournament?.description || "",
                 },
                 { hid: "og:image", property: "og:image", content: require("../../Assets/img/site/open/banner.png") },
 
@@ -180,7 +180,7 @@ const openModule = namespace("open");
         };
     },
 })
-export default class players extends Mixins(CentrifugeMixin) {
+export default class Players extends Mixins(CentrifugeMixin) {
 
     @State loggedInUser!: null | UserInfo;
     @openModule.State tournament!: Tournament | null;
@@ -204,7 +204,7 @@ export default class players extends Mixins(CentrifugeMixin) {
     page: "list" | "management" = "list";
     unregisteredPlayers: TeamList[] | null = null;
 
-    get filteredplayers() {
+    get filteredplayers () {
         if (this.page === "management")
             return this.myplayers ?? [];
         let players = [ ...(this.playerList ?? []) ];
@@ -221,7 +221,7 @@ export default class players extends Mixins(CentrifugeMixin) {
         ).sort((a, b) => this.sortFunctions[this.currentSort](a, b) * (this.sortDir === "ASC" ? 1 : - 1));
     }
 
-    async mounted() {
+    async mounted () {
         if (this.$route.query.s === "my")
             this.page = "management";
         this.loading = true;
@@ -243,7 +243,7 @@ export default class players extends Mixins(CentrifugeMixin) {
             await this.initCentrifuge(`players:${this.tournament.ID}`);
     }
 
-    handleData(ctx: ExtendedPublicationContext) {
+    handleData (ctx: ExtendedPublicationContext) {
         if (ctx.data.type === "teamRegistered")
             this.$store.commit("open/addTeamList", ctx.data.team);
     }
