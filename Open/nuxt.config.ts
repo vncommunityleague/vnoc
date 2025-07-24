@@ -42,11 +42,11 @@ export default {
             { hid: "og:image:type", property: "og:image:type", content: "image/png" },
             { hid: "og:image:alt", property: "og:image:alt", content: "Vietnam osu! Championship 2025" },
             
-            { name: "twitter:site", content: "@corsace_" },
+            { name: "twitter:site", content: "@vcl_osu" },
             { name: "twitter:domain", content: "https://vnoc.hoaq.works" },
             { name: "twitter:card", content: "summary_large_image" },
 
-            {hid: "keywords", property: "keywords", content: "corsace, corsace open, osu!, tournament, qualifiers, teams"},
+            {hid: "keywords", property: "keywords", content: "vietnam community league, vcl, vietnam osu! championship, vnoc, vnoc6, osu!, rhythm game, osu game, vietnam tournament, tournament, qualifiers, teams"},
         ],
     },
 } as NuxtConfig;

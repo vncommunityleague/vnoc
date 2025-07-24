@@ -1,13 +1,5 @@
 <template>
     <div class="info">
-        <SubHeader
-            :selections="[
-                { text: $t('open.info.title'), value: 'info' },
-                { text: $t('open.info.condensed'), value: 'condensed' },
-            ]"
-            :current-page="page"
-            @update:page="page = $event"
-        />
         <div class="info_wrapper">
             <OpenTitle v-if="page === 'condensed'">
                 {{ $t('open.info.title') }}
@@ -19,22 +11,6 @@
                 <div class="info_desc__text">
                     {{ tournament.description }}
                 </div>
-                <!--                <div class="info_desc__buttons">-->
-                <!--                    <ContentButton -->
-                <!--                        class="content_button&#45;&#45;red info_desc_button content_button&#45;&#45;margin"-->
-                <!--                        link="https://paypal.me/corsaceofficial"-->
-                <!--                        external-->
-                <!--                    >-->
-                <!--                        {{ $t('open.info.donateToCorsace') }}-->
-                <!--                    </ContentButton>-->
-                <!--                    <ContentButton -->
-                <!--                        class="content_button&#45;&#45;red info_desc_button content_button&#45;&#45;margin"-->
-                <!--                        link="http://momokai.com/corsace"-->
-                <!--                        external-->
-                <!--                    >-->
-                <!--                        {{ $t('open.info.supportViaSponsorship') }}-->
-                <!--                    </ContentButton>-->
-                <!--                </div>-->
                 <OpenTitle
                     class="info_section_header"
                 >
@@ -402,7 +378,7 @@ enum StageStatus {
 
                 {hid: "og:site_name", property: "og:site_name", content: this.$store.state.open.title},
                 {hid: "og:title", property: "og:title", content: this.$store.state.open.title},
-                {hid: "og:url", property: "og:url", content: `https://open.corsace.io${this.$route.path}`}, 
+                {hid: "og:url", property: "og:url", content: `https://vnoc.hoaq.works${this.$route.path}`}, 
                 {hid: "og:description", property: "og:description", content: this.$store.state.open.tournament?.description || ""},
                 {hid: "og:image",property: "og:image", content: require("../../Assets/img/site/open/banner.png")},
                 
@@ -411,7 +387,7 @@ enum StageStatus {
                 {name: "twitter:image", content: require("../../Assets/img/site/open/banner.png")},
                 {name: "twitter:image:src", content: require("../../Assets/img/site/open/banner.png")},
             ],
-            link: [{rel: "canonical", hid: "canonical", href: `https://open.corsace.io${this.$route.path}`}],
+            link: [{rel: "canonical", hid: "canonical", href: `https://vnoc.hoaq.works${this.$route.path}`}],
         };
     },
 })

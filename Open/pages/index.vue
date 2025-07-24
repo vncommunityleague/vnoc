@@ -12,7 +12,9 @@
             >
         </video>
         <div class="index__content">
-            <div class="index__banner">
+            <div
+                class="index__banner"
+                @click="increaseCounter">
                 <img src="../../Assets/img/site/open/banner.png">
             </div>
             <div class="index_portal">
@@ -29,7 +31,7 @@
                                 class="index_schedule__group"
                             >
                                 <span class="index_schedule__event"> {{ time.event }} </span>
-                                <span class="index_schedule__line" />
+                                <span class="index_schedule__line"/>
                                 <span class="index_schedule__time">
                                     {{
                                         new Date(time.start || "").toLocaleString("en-US", optionsRange)
@@ -148,6 +150,8 @@ export default class Default extends Vue {
 
     @State loggedInUser!: UserInfo | null;
 
+    @State counter = 0;
+
     get avatarURL (): string {
         return this.loggedInUser?.osu.avatar ?? "";
     }
@@ -156,6 +160,17 @@ export default class Default extends Vue {
         await this.$store.dispatch("setInitialData", "vnoc");
     }
 
+    increaseCounter () {
+        this.counter ++;
+
+        if (this.counter < 6) {
+            return;
+        }
+
+        window.open("https://www.twitch.tv/vncommunityleague", "_blank");
+
+        this.counter = 0;
+    }
 }
 </script>
 
