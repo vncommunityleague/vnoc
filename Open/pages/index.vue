@@ -167,8 +167,7 @@ export default class Default extends Vue {
             return;
         }
 
-        window.open("https://www.twitch.tv/vncommunityleague", "_blank");
-
+        window.open("https://www.twitch.tv/vncommunityleague/schedule", "_blank");
         this.counter = 0;
     }
 }
