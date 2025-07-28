@@ -121,7 +121,7 @@
                             <img
                                 class="socials__icon"
                                 :class="`socials__icon--${viewTheme}`"
-                                src="../../Assets/img/social/discord.png"
+                                src="../../Assets/img/social/discord.svg"
                                 alt=""
                             >
                         </a>
@@ -138,7 +138,7 @@
                             <img
                                 class="socials__icon"
                                 :class="`socials__icon--${viewTheme}`"
-                                src="../../Assets/img/social/twitch.png"
+                                src="../../Assets/img/social/twitch.svg"
                                 alt=""
                             >
                         </a>
@@ -155,7 +155,7 @@
                             <img
                                 class="socials__icon"
                                 :class="`socials__icon--${viewTheme}`"
-                                src="../../Assets/img/social/youtube.png"
+                                src="../../Assets/img/social/youtube.svg"
                                 alt=""
                             >
                         </a>
@@ -172,7 +172,7 @@
                             <img
                                 class="socials__icon"
                                 :class="`socials__icon--${viewTheme}`"
-                                src="../../Assets/img/social/github.png"
+                                src="../../Assets/img/social/github.svg"
                                 alt=""
                             >
                         </a>
@@ -189,7 +189,7 @@
                             <img
                                 class="socials__icon"
                                 :class="`socials__icon--${viewTheme}`"
-                                src="../../Assets/img/social/sheets.png"
+                                src="../../Assets/img/social/sheets.svg"
                                 alt=""
                             >
                         </a>
@@ -367,6 +367,8 @@ export default class Default extends Mixins(CentrifugeMixin) {
     height: 100%;
     display: flex;
     align-items: center;
+    column-gap: 16px;
+    
     @include breakpoint(mobile) {
         margin-right: auto;
     }
@@ -380,15 +382,15 @@ export default class Default extends Mixins(CentrifugeMixin) {
 
     &__icon {
         margin-right: 3px;
-        height: 20px;
-        filter: brightness(100);
+        height: 8px;
+
         @include breakpoint(tablet) {
             margin-right: 5px;
-            height: 25px;
+            height: 12px;
         }
         @include breakpoint(laptop) {
             margin-right: 10px;
-            height: 30px;
+            height: 18px;
         }
         // &--light {
         //     filter: invert(1);

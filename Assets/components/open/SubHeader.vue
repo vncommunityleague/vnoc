@@ -37,7 +37,7 @@ export default class SubHeader extends Vue {
     justify-content: center;
     width: 100%;
     top: 0px;
-    background-color: $open-red;
+    background-color: #ffa1a1;
     color: $open-dark;
 
     &_item {
@@ -47,12 +47,13 @@ export default class SubHeader extends Vue {
 
         cursor: pointer;
         width: auto;
-        text-decoration: none;
         font-weight: 700;
+        text-decoration: none;
         padding: 5px 90px;
 
         &:hover, &--active {
-            color: $white;
+            color: $open-dark;
+            font-weight: 900;
         }
 
         &--active::after {
@@ -63,7 +64,7 @@ export default class SubHeader extends Vue {
             width: 4.5px;
             height: 4.5px;
             transform: rotate(-45deg);
-            background-color: $white;
+            background-color: $open-dark;
         }
     }
 }

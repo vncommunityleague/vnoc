@@ -1,16 +1,10 @@
 <template>
     <div class="index">
-        <video
-            autoplay
-            muted
-            loop
-            class="index__video"
-        >
-            <source
-                src="https://static.rescup.xyz/video/rc25_bg.webm"
-                type="video/mp4"
-            >
-        </video>
+        <img 
+            class="index__background" 
+            src="../../Assets/img/site/open/background.png"
+            alt=""
+        > 
         <div class="index__content">
             <div
                 class="index__banner"
@@ -177,7 +171,7 @@ export default class Default extends Vue {
 @import '@s-sass/_variables';
 
 .index {
-    background: $dark;
+    //background: $dark;
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -186,7 +180,7 @@ export default class Default extends Vue {
     justify-content: center;
     height: 100%;
 
-    &__video {
+    &__background {
         position: absolute;
         top: 0;
         left: 0;

@@ -43,16 +43,16 @@ export default class TheFooter extends Vue {
 
 .footer {
     &--light {
-        background-color:#1f0d0c;
-        color: #ffbfbf;
+        background-color: #ffa1a1;
+        color: #0f0606;
     }
     &--dark {
         background-color: $dark;
         color: white;
     }
-    &--open {
-        border-top: 1px solid white;
-        background-color: $open-red;
+    &--vnoc {
+        color: #0f0606;
+        background-color: #0f0606;
     }
     bottom: 0;
 
