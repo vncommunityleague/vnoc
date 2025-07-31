@@ -4,7 +4,7 @@
             {{ tbdSync ? "TBD" : formatTime(dateSync) }}
         </div>
         <div
-            v-if="!tbdSync" 
+            v-if="!tbdSync"
             class="open_matchup_time__timezone"
         >
             {{ timezoneSync }}
@@ -23,8 +23,10 @@ export default class OpenMatchupTime extends Vue {
 
     formatTime (date: Date | null): string {
         if (!date) return "";
-        const hours = date.getUTCHours();
-        const minutes = date.getUTCMinutes();
+        const utc = date.getTime() + (date.getTimezoneOffset() * 60000);
+        const tzDate = new Date(utc + 7 * 3600000);
+        const hours = tzDate.getHours();
+        const minutes = tzDate.getMinutes();
         return `${hours < 10 ? "0" : ""}${hours}:${minutes < 10 ? "0" : ""}${minutes}`;
     }
 }
@@ -35,7 +37,7 @@ export default class OpenMatchupTime extends Vue {
 @import '@s-sass/_variables';
 
 .open_matchup_time {
-    
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,7 +52,7 @@ export default class OpenMatchupTime extends Vue {
         letter-spacing: 0em;
         text-align: center;
     }
-    
+
     &__timezone {
         font-size: $font-sm;
         font-weight: 600;

@@ -7,7 +7,7 @@
         >
             <div class="qualifiers_view_day__date">
                 <div class="qualifiers_view_day__date_text">
-                    {{ qualifierGroupedByDate.date.toLocaleString('en-US', { month: 'long', day: 'numeric', timeZone: 'UTC' }) }}
+                    {{ qualifierGroupedByDate.date.toLocaleString('en-US', { month: 'long', day: 'numeric', timeZone: '+07:00' }) }}
                 </div>
             </div>
             <NuxtLink
@@ -20,7 +20,7 @@
                     <OpenMatchupTime
                         class="qualifiers_view_day__time"
                         :date="qualifier.date"
-                        timezone="UTC"
+                        timezone="UTC+7"
                     />
                     <div
                         v-if="qualifier.team" 
