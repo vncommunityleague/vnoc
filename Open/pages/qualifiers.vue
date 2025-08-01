@@ -19,7 +19,7 @@
                     <Clock />
                     <ContentButton
                         class="content_button--red"
-                        :link="'https://docs.google.com/spreadsheets/d/1f2538nh9McAii15EJkHU18fi65ICQihxsmvTK-qhA0w'"
+                        :link="'https://docs.google.com/spreadsheets/d/1h2akeQIgphGPXFe0995p5ujangNYdKotvzp2QvBESWE'"
                         :img-src="require('../../Assets/img/site/open/mappool/sheets-ico.svg')"
                         external
                     >
