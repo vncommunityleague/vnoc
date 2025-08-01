@@ -247,35 +247,29 @@ export const actions: ActionTree<OpenState, OpenState> = {
         if (data.success)
             commit("setQualifierList", data.qualifiers);
     },
-    async setMatchups ({ commit }, roundOrStage: Stage | Round) {
-        if (!roundOrStage)
+    async setMatchups ({ commit }, stageID) {
+        if (!stageID || isNaN(parseInt(stageID)))
             return;
-
-        const parentType = "stageType" in roundOrStage ? "stage" : "round";
-
-        const { data } = await this.$axios.get<{ matchups: MatchupList[] }>(`/api/${parentType}/${roundOrStage.ID}/matchups`);
+        
+        const { data } = await this.$axios.get<{ matchups: MatchupList[] }>(`/api/stage/${stageID}/matchups`);
 
         if (data.success)
             commit("setMatchups", data.matchups);
     },
-    async setMappools ({ commit }, roundOrStage: Stage | Round) {
-        if (!roundOrStage)
+    async setMappools ({ commit }, stageID) {
+        if (!stageID || isNaN(parseInt(stageID)))
             return;
 
-        const parentType = "stageType" in roundOrStage ? "stage" : "round";
-
-        const { data } = await this.$axios.get<{ mappools: Mappool[] }>(`/api/${parentType}/${roundOrStage.ID}/mappools`);
+        const { data } = await this.$axios.get<{ mappools: Mappool[] }>(`/api/stage/${stageID}/mappools`);
 
         if (data.success)
             commit("setMappools", data.mappools);
     },
-    async setScores ({ commit }, roundOrStage: Stage | Round) {
-        if (!roundOrStage)
+    async setScores ({ commit }, stageID) {
+        if (!stageID || isNaN(parseInt(stageID)))
             return;
 
-        const parentType = "stageType" in roundOrStage ? "stage" : "round";
-
-        const { data } = await this.$axios.get<{ scores: MatchupScore[] }>(`/api/${parentType}/${roundOrStage.ID}/scores`);
+        const { data } = await this.$axios.get<{ scores: MatchupScore[] }>(`/api/stage/${stageID}/scores`);
 
         if (data.success)
             commit("setScores", data.scores);
