@@ -240,7 +240,7 @@ export default class Players extends Mixins(CentrifugeMixin) {
         this.loading = false;
 
         if (this.tournament)
-            await this.initCentrifuge(`players:${this.tournament.ID}`);
+            await this.initCentrifuge(`teams:${this.tournament.ID}`);
     }
 
     handleData (ctx: ExtendedPublicationContext) {
