@@ -185,7 +185,7 @@ export default class Players extends Mixins(CentrifugeMixin) {
     @State loggedInUser!: null | UserInfo;
     @openModule.State tournament!: Tournament | null;
     @openModule.State myplayers!: Team[] | null;
-    @openModule.State playerList!: TeamList[] | null;
+    @openModule.State("teamList") playerList!: TeamList[] | null;
 
     loading = true;
     showUnregistered = false;
