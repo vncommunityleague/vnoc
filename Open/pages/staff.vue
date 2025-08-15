@@ -29,7 +29,7 @@
                                 class="staff_row_members_card__headshot"
                                 :style="{ 'backgroundImage': `url(${staffMember.avatar})` }"
                             />
-                            <div class="staff_row_members_card__line"/>
+                            <div class="staff_row_members_card__line" />
                             <div class="staff_row_members_card_details">
                                 <div class="staff_row_members_card_details__username">
                                     {{ staffMember.username }}

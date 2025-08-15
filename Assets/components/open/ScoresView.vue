@@ -58,10 +58,7 @@
                     <tbody>
                         <tr>
                             <th> {{ $t('open.qualifiers.scores.nav.placement') }} </th>
-                            <th v-if="syncView === 'players'">
-                                {{ $t('open.qualifiers.scores.nav.player') }}
-                            </th>
-                            <th> {{ $t('open.qualifiers.scores.nav.team') }} </th>
+                            <th> {{ $t('open.qualifiers.scores.nav.player') }} </th>
                             <th> {{ $t('open.qualifiers.scores.nav.best') }} </th>
                             <th> {{ $t('open.qualifiers.scores.nav.worst') }} </th>
                             <th @click="mapSort = -1; sortDir = sortDir === 'asc' ? 'desc' : 'asc';">

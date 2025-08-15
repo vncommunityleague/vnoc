@@ -39,29 +39,29 @@
                     #right
                 >
                     <Clock />
-                    <div class="qualifiers__header_subtext">
-                        {{ $t('open.qualifiers.scores.categorySelect') }}
-                    </div>
-                    <ContentButton 
-                        class="content_button--header_button"
-                        :class="{
-                            'content_button--red': scoreView === 'players',
-                            'content_button--red_outline': scoreView !== 'players',
-                        }"
-                        @click.native="scoreView = 'players'"
-                    >
-                        {{ $t('open.qualifiers.scores.players') }}
-                    </ContentButton>
-                    <ContentButton 
-                        class="content_button--header_button"
-                        :class="{
-                            'content_button--red': scoreView === 'teams',
-                            'content_button--red_outline': scoreView !== 'teams',
-                        }"
-                        @click.native="scoreView = 'teams'"
-                    >
-                        {{ $t('open.qualifiers.scores.teams') }}
-                    </ContentButton>
+                    <!--                    <div class="qualifiers__header_subtext">-->
+                    <!--                        {{ $t('open.qualifiers.scores.categorySelect') }}-->
+                    <!--                    </div>-->
+                    <!--                    <ContentButton -->
+                    <!--                        class="content_button&#45;&#45;header_button"-->
+                    <!--                        :class="{-->
+                    <!--                            'content_button&#45;&#45;red': scoreView === 'players',-->
+                    <!--                            'content_button&#45;&#45;red_outline': scoreView !== 'players',-->
+                    <!--                        }"-->
+                    <!--                        @click.native="scoreView = 'players'"-->
+                    <!--                    >-->
+                    <!--                        {{ $t('open.qualifiers.scores.players') }}-->
+                    <!--                    </ContentButton>-->
+                    <!--                    <ContentButton -->
+                    <!--                        class="content_button&#45;&#45;header_button"-->
+                    <!--                        :class="{-->
+                    <!--                            'content_button&#45;&#45;red': scoreView === 'teams',-->
+                    <!--                            'content_button&#45;&#45;red_outline': scoreView !== 'teams',-->
+                    <!--                        }"-->
+                    <!--                        @click.native="scoreView = 'teams'"-->
+                    <!--                    >-->
+                    <!--                        {{ $t('open.qualifiers.scores.players') }}-->
+                    <!--                    </ContentButton>-->
                     <ContentButton
                         class="content_button--red content_button--font_sm"
                         @click.native="placementLock = !placementLock"

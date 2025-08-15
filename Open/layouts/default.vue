@@ -104,7 +104,7 @@
                             <img
                                 class="socials__icon"
                                 :class="`socials__icon--${viewTheme}`"
-                                src="../../Assets/img/vcl.png"
+                                src="../../Assets/img/vcl.svg"
                                 alt=""
                             >
                         </a>

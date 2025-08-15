@@ -3,7 +3,8 @@
         :href="`https://osu.ppy.sh/users/${teamSync.members[0].osuID}`"
         target="_blank"
         rel="noopener noreferrer"
-        class="open_card_team">
+        class="open_card_team"
+    >
         <!--    <NuxtLink-->
         <!--        :to="`/team/${teamSync.ID}`"-->
         <!--        class="open_card_team"-->

@@ -1,13 +1,5 @@
 <template>
     <div class="schedule">
-        <SubHeader
-            :selections="[
-                { text: $t('open.schedule.nav.schedule'), value: 'schedule' },
-                { text: $t('open.schedule.nav.brackets'), value: 'brackets' },
-            ]"
-            :current-page="page"
-            @update:page="changePage"
-        />
         <div class="schedule_main_content">
             <OpenTitle>
                 {{ $t(`open.schedule.nav.${page}`) }} - <span class="schedule_main_content__abbreviation">{{ selectedStage?.abbreviation.toUpperCase() || '' }}</span>
@@ -148,7 +140,7 @@
                     </StageSelector>
                     <SearchBar
                         v-if="page === 'schedule'"
-                        :placeholder="`${$t('open.teams.searchPlaceholder')}`"
+                        :placeholder="`${$t('open.players.searchPlaceholder')}`"
                         @update:search="searchValue = $event"
                     />
                     <!-- TODO: NOT MAKE THIS A STATIC LINK LOL -->

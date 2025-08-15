@@ -10,8 +10,8 @@
         />
         <div class="mappool__main_content">
             <OpenTitle>
-                {{ $t('open.mappool.title') }}
-                <template 
+                {{ $t("open.mappool.title") }}
+                <template
                     v-if="page === 'mappool'"
                     #right
                 >
@@ -26,7 +26,7 @@
                         </template>
 
                         <template #stage>
-                            {{ selectedStage?.abbreviation.toUpperCase() || '' }}
+                            {{ selectedStage?.abbreviation.toUpperCase() || "" }}
                         </template>
                     </StageSelector>
                     <!-- TODO: NOT MAKE THIS A STATIC LINK LOL -->
@@ -36,7 +36,7 @@
                         :img-src="require('../../Assets/img/site/open/mappool/sheets-ico.svg')"
                         external
                     >
-                        {{ $t('open.qualifiers.mappool.sheets') }}
+                        {{ $t("open.qualifiers.mappool.sheets") }}
                     </ContentButton>
                     <ContentButton
                         v-for="mappool in mappools"
@@ -46,7 +46,7 @@
                         :img-src="require('../../Assets/img/site/open/mappool/dl-ico.svg')"
                         external
                     >
-                        {{ $t('open.qualifiers.mappool.mappool') }} - {{ mappool.abbreviation.toUpperCase() }}
+                        {{ $t("open.qualifiers.mappool.mappool") }} - {{ mappool.abbreviation.toUpperCase() }}
                     </ContentButton>
                 </template>
                 <template
@@ -62,37 +62,16 @@
                         {{ $t("open.components.stageSelector") }}
 
                         <template #stage>
-                            {{ selectedStage?.abbreviation.toUpperCase() || '' }}
+                            {{ selectedStage?.abbreviation.toUpperCase() || "" }}
                         </template>
                     </StageSelector>
-                    <div class="qualifiers__header_subtext">
-                        {{ $t('open.qualifiers.scores.categorySelect') }}
-                    </div>
-                    <ContentButton 
-                        class="content_button--header_button"
-                        :class="{
-                            'content_button--red': scoreView === 'players',
-                            'content_button--red_outline': scoreView !== 'players',
-                        }"
-                        @click.native="scoreView = 'players'"
-                    >
-                        {{ $t('open.qualifiers.scores.players') }}
-                    </ContentButton>
-                    <ContentButton 
-                        class="content_button--header_button"
-                        :class="{
-                            'content_button--red': scoreView === 'teams',
-                            'content_button--red_outline': scoreView !== 'teams',
-                        }"
-                        @click.native="scoreView = 'teams'"
-                    >
-                        {{ $t('open.qualifiers.scores.teams') }}
-                    </ContentButton>
                     <ContentButton
                         class="content_button--red content_button--font_sm"
                         @click.native="placementLock = !placementLock"
                     >
-                        {{ placementLock ? $t('open.qualifiers.scores.lockedPlacement') : $t('open.qualifiers.scores.unlockedPlacement') }}
+                        {{
+                            placementLock ? $t("open.qualifiers.scores.lockedPlacement") : $t("open.qualifiers.scores.unlockedPlacement")
+                        }}
                     </ContentButton>
                 </template>
             </OpenTitle>
@@ -154,20 +133,28 @@ const openModule = namespace("open");
         return {
             title: this.$store.state.open.title,
             meta: [
-                {hid: "description", name: "description", content: this.$store.state.open.tournament?.description || ""},
+                {
+                    hid: "description",
+                    name: "description",
+                    content: this.$store.state.open.tournament?.description || "",
+                },
 
-                {hid: "og:site_name", property: "og:site_name", content: this.$store.state.open.title},
-                {hid: "og:title", property: "og:title", content: this.$store.state.open.title},
-                {hid: "og:url", property: "og:url", content: `https://vnoc.hoaq.works${this.$route.path}`}, 
-                {hid: "og:description", property: "og:description", content: this.$store.state.open.tournament?.description || ""},
-                {hid: "og:image",property: "og:image", content: require("../../Assets/img/site/open/banner.png")},
-                
-                {name: "twitter:title", content: this.$store.state.open.title},
-                {name: "twitter:description", content: this.$store.state.open.tournament?.description || ""},
-                {name: "twitter:image", content: require("../../Assets/img/site/open/banner.png")},
-                {name: "twitter:image:src", content: require("../../Assets/img/site/open/banner.png")},
+                { hid: "og:site_name", property: "og:site_name", content: this.$store.state.open.title },
+                { hid: "og:title", property: "og:title", content: this.$store.state.open.title },
+                { hid: "og:url", property: "og:url", content: `https://vnoc.hoaq.works${this.$route.path}` },
+                {
+                    hid: "og:description",
+                    property: "og:description",
+                    content: this.$store.state.open.tournament?.description || "",
+                },
+                { hid: "og:image", property: "og:image", content: require("../../Assets/img/site/open/banner.png") },
+
+                { name: "twitter:title", content: this.$store.state.open.title },
+                { name: "twitter:description", content: this.$store.state.open.tournament?.description || "" },
+                { name: "twitter:image", content: require("../../Assets/img/site/open/banner.png") },
+                { name: "twitter:image:src", content: require("../../Assets/img/site/open/banner.png") },
             ],
-            link: [{rel: "canonical", hid: "canonical", href: `https://vnoc.hoaq.works${this.$route.path}`}],
+            link: [ { rel: "canonical", hid: "canonical", href: `https://vnoc.hoaq.works${this.$route.path}` } ],
         };
     },
 })
@@ -183,7 +170,7 @@ export default class Mappool extends Vue {
 
     stageList: Stage[] = [];
     index = 0;
-    
+
     get selectedStage (): Stage | null {
         return this.stageList[this.index] || null;
     }
@@ -197,7 +184,7 @@ export default class Mappool extends Vue {
             this.loading = false;
             return;
         }
-        
+
         this.$store.commit("open/setMappools", []);
         this.$store.commit("open/setScores", []);
 
@@ -220,7 +207,7 @@ export default class Mappool extends Vue {
     mounted () {
         this.stageList = this.tournament?.stages ?? [];
         this.index = this.stageList.findIndex(s => s.timespan.end > new Date());
-        if (this.index === -1)
+        if (this.index === - 1)
             this.index = this.stageList.length - 1;
     }
 }
@@ -228,6 +215,7 @@ export default class Mappool extends Vue {
 
 <style lang="scss">
 @import '@s-sass/_variables';
+
 .mappool {
     overflow: auto;
 
