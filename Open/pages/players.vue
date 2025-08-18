@@ -193,7 +193,7 @@ export default class Players extends Mixins(CentrifugeMixin) {
     // sorts = ["RANK", "BWS AVG", "A-Z", "ID", "TEAM SIZE"] as const;
     sorts = [ "RANK", "A-Z", "ID" ] as const;
     sortFunctions: Record<typeof this.sorts[number], (a: TeamList, b: TeamList) => number> = {
-        "RANK": (a, b) => a.rank - b.rank,
+        "RANK": (a, b) => (a.rank || Number.MAX_VALUE) - (b.rank || Number.MAX_VALUE),
         // "BWS AVG": (a, b) => a.BWS - b.BWS,
         "A-Z": (a, b) => a.name.localeCompare(b.name),
         "ID": (a, b) => a.ID - b.ID,
