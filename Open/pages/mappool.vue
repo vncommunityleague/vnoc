@@ -186,7 +186,6 @@ export default class Mappool extends Vue {
             return;
         }
 
-        const ID = this.selectedStage.ID;
         this.$store.commit("open/setMappools", []);
         this.$store.commit("open/setScores", []);
 
