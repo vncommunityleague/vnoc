@@ -45,17 +45,6 @@
                     {{ Math.round(teamSync.rank) }}
                 </div>
             </div>
-            <div
-                v-if="teamSync.ID !== -1"
-                class="schedule_matchbox_team_details_teambws"
-            >
-                <div class="schedule_matchbox_team--title schedule_matchbox_team--title_soft">
-                    {{ $t('open.components.openCardTeam.teambwsAverage') }}
-                </div>
-                <div class="schedule_matchbox_team_details_teambws__bws">
-                    {{ Math.round(teamSync.BWS) }}
-                </div>
-            </div>
         </div>
     </div>
 </template>
