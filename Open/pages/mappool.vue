@@ -215,8 +215,8 @@ export default class Mappool extends Vue {
             } else {
                 for(const round of stage.rounds) {
                     this.stageList.push(round);
-                    if(this.index === -1 && stage.timespan.end > new Date()) {
-                        this.index = this.stageList.length - 1;
+                    if(this.index === -1 && !round.schedulingDeadline) {
+                        this.index = this.stageList.length;
                     }
                 }
             }

@@ -99,7 +99,7 @@
             <OpenMatchupTime
                 :date="matchupSync.date"
                 :tbd="tbdtimeSync"
-                timezone="UTC"
+                timezone="UTC+7"
             />
         </div>
         <div class="schedule_matchbox_teams">
@@ -119,6 +119,7 @@
         <div class="schedule_matchbox_info">
             <div class="schedule_matchbox_info__mp">
                 <a
+                    v-if="matchupSync.mp"
                     :href="`https://osu.ppy.sh/mp/${matchupSync.mp}`"
                     :target="_blank"
                     class="schedule_matchbox_info__icon_button"
@@ -277,7 +278,7 @@ export default class ScheduleMatchBox extends Vue {
         const monthIndex = date.getUTCMonth();
         return `${months[monthIndex]} ${day < 10 ? "0" : ""}${day} (${date.toLocaleString("en-US", {
             weekday: "short",
-            timeZone: "UTC",
+            timeZone: "+07:00",
         }).toUpperCase()})`;
     }
 }
@@ -492,6 +493,7 @@ export default class ScheduleMatchBox extends Vue {
             width: 26px;
             height: 100%;
             border-right: 2px solid white;
+            background-color: #FAFAFA;
         }
 
         &__staff {

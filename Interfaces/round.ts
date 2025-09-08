@@ -60,10 +60,11 @@ export const roundNames = [
 ];
 
 export interface Round {
-    ID:           number;
-    name:         string;
+    ID: number;
+    name: string;
     abbreviation: string;
-    isDraft?:     boolean | null;
-    mappool:      Mappool[];
-    mapOrder?:    MapOrder[] | null;
+    isDraft?: boolean | null;
+    schedulingDeadline?: Date | null;
+    mappool: Mappool[];
+    mapOrder?: MapOrder[] | null;
 }
